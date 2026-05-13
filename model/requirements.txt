@@ -1,0 +1,5 @@
+Fastapi
+sentence-transformer
+pymupdf
+langchain
+supabase
