@@ -20,12 +20,15 @@ router.get(
 
 router.get(
   "/google/callback",
+
   passport.authenticate("google", {
     session: false,
   }),
 
   async (req, res) => {
+
     try {
+
       const token = jwt.sign(
         {
           id: req.user._id,
@@ -47,15 +50,12 @@ router.get(
         maxAge: 7 * 24 * 60 * 60 * 1000,
       });
 
-      res.status(200).json({
-        success: true,
-        message: "Google login successful",
+      res.redirect(
+        "http://localhost:5173/dashboard"
+      );
 
-        token,
-
-        user: req.user,
-      });
     } catch (error) {
+
       console.log(error);
 
       res.status(500).json({
@@ -65,5 +65,4 @@ router.get(
     }
   },
 );
-
 module.exports = router;
