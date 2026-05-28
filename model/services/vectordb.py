@@ -49,36 +49,6 @@ def store_embeddings(document_id, chunks, embeddings):
 
         conn.commit()
 
-
-def search_similar_chunks(
-    query_embedding,
-    document_id,
-    top_k=5
-):
-
-    with engine.connect() as conn:
-
-        query = text("""
-            SELECT
-                content
-            FROM document_chunks
-            WHERE document_id = :document_id
-            ORDER BY embedding <-> :query_embedding
-            LIMIT :top_k
-        """)
-
-        result = conn.execute(
-            query,
-            {
-                "document_id": document_id,
-                "query_embedding": query_embedding.tolist(),
-                "top_k": top_k
-            }
-        )
-
-        chunks = [row[0] for row in result]
-
-        return chunks
     
 def search_similar_chunks(
     query_embedding,
