@@ -1,11 +1,11 @@
+from pgvector.sqlalchemy import Vector
+from sqlalchemy import create_engine, text
 import os
 from dotenv import load_dotenv
-from sqlalchemy import create_engine, text
 
 load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
-
 
 engine = create_engine(DATABASE_URL)
 
@@ -49,16 +49,37 @@ def store_embeddings(document_id, chunks, embeddings):
 
         conn.commit()
 
+    
+def search_similar_chunks(
+    query_embedding,
+    document_id,
+    top_k=5
+):
 
+    query_embedding_str = (
+        "[" + ",".join(map(str, query_embedding)) + "]"
+    )
 
-def search_similar_chunks(ques_embeeding):
+    query = text("""
+        SELECT
+            content
+        FROM document_chunks
+        WHERE document_id = :document_id
+        ORDER BY embedding <-> CAST(:query_embedding AS vector)
+        LIMIT :top_k
+    """)
+
     with engine.connect() as conn:
-        query = text("""
-            SELECT * FROM document_chunks
-            ORDER BY embedding <=> CAST(:ques_embeeding AS vector)
-            LIMIT 5
-        """)
 
-        res = conn.execute(query, {"ques_embeeding": ques_embeeding.tolist()}).fetchall()
-        
-    return res
+        result = conn.execute(
+            query,
+            {
+                "document_id": document_id,
+                "query_embedding": query_embedding_str,
+                "top_k": top_k
+            }
+        )
+
+        rows = result.fetchall()
+
+    return [row[0] for row in rows]
