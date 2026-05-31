@@ -30,6 +30,11 @@ function App() {
                     path="/dashboard"
                     element={<Dashboard />}
                 />
+                <Route
+                    path="/logout"
+                    element={<Landing />}
+                />
+
 
 
             </Routes>
