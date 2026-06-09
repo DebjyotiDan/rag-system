@@ -8,6 +8,7 @@ import { FcGoogle } from "react-icons/fc";
 import Navbar from "../Components/navbar";
 import { useState } from "react";
 import axios from "axios";
+import "../index.css";
 
 function Login() {
 
