@@ -1,5 +1,6 @@
 import fitz as fz
 
+
 def extract_text(pdf_path):
     doc = fz.open(pdf_path)
 

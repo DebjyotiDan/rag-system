@@ -1,6 +1,11 @@
 Fastapi
 sentence-transformers
 pymupdf
-langchain
+langchain-text-splitters
 supabase
 google-genai
+pgvector
+sqlalchemy
+psycopg2-binary
+python-dotenv
+onnxruntime

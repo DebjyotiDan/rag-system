@@ -29,10 +29,14 @@ Context:
 Question:
 {query}
 """
-
-    response = client.models.generate_content(
-        model="gemini-3-flash-preview",
-        contents=prompt
-    )
+    try:
+        response = client.models.generate_content(
+            model="gemini-3.5-flash",
+            contents=prompt
+        )
+    except Exception as e:
+        print(f"Error generating answer: {e}")
+        return "I could not find this in the document."
+   
 
     return response.text
