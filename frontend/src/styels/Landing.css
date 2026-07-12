@@ -217,6 +217,10 @@
     left: 0;
     right: 0;
     z-index: 200;
+    background: rgba(2, 13, 31, 0.75);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    border-bottom: 1px solid rgba(46, 124, 246, 0.13);
     animation: lnd-fade-in .7s ease forwards;
 }
 
@@ -228,10 +232,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(2, 13, 31, 0.75);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-    border-bottom: 1px solid rgba(46, 124, 246, 0.13);
     transition: border-color var(--ease-fast);
 }
 

@@ -9,13 +9,13 @@ def _get_model():
     if _model is None:
         try:
             _model = SentenceTransformer(
-                "all-MiniLM-L6-v2",
+                "multi-qa-MiniLM-L6-cos-v1",
                 backend="onnx"
             )
         except Exception:
             # Fallback to default PyTorch if ONNX isn't available
             _model = SentenceTransformer(
-                "all-MiniLM-L6-v2"
+                "multi-qa-MiniLM-L6-cos-v1"
             )
     return _model
 

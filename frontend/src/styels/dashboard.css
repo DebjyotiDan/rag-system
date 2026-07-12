@@ -1,15 +1,22 @@
+/* ═══════════════════════════════════════════════
+   Dashboard – Clean Minimal Light Theme
+   ═══════════════════════════════════════════════ */
+
 .dash {
     --blue: #3b82f6;
     --blue-lt: #eff6ff;
     --blue-md: #bfdbfe;
     --text: #1e293b;
+    --text-secondary: #475569;
     --muted: #64748b;
     --border: #e2e8f0;
+    --bg: #f8fafc;
+    --card: #ffffff;
     --radius: 12px;
     --transition: .18s ease;
     min-height: 100vh;
     width: 100%;
-    background: #f8fafc;
+    background: var(--bg);
     color: var(--text);
     font-family: 'Inter', system-ui, sans-serif;
     box-sizing: border-box;
@@ -33,7 +40,7 @@
     list-style: none;
 }
 
-/* ── nav ── */
+/* ── Nav ── */
 .dash .nav {
     position: sticky;
     top: 0;
@@ -45,33 +52,65 @@
     background: #fff;
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(8px);
-    width: 100vw;
+    width: 100%;
 }
 
 .dash .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-weight: 800;
-    font-size: 24px;
+    font-size: 1.2rem;
     letter-spacing: -.01em;
-
 }
 
-/* ── buttons ── */
-.dash .btn-ghost {
-    padding: .45rem 1rem;
+.dash .nav-brand-mark {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: .8rem;
+    color: #fff;
+}
+
+.dash .nav-brand-accent {
+    color: var(--blue);
+}
+
+.dash .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dash .nav-user {
     font-size: .85rem;
+    color: var(--muted);
     font-weight: 500;
-    background: red;
+}
+
+/* ── Buttons ── */
+.dash .btn-logout {
+    padding: .4rem .9rem;
+    font-size: .82rem;
+    font-weight: 500;
+    background: #fff;
     border: 1px solid var(--border);
     border-radius: 8px;
-    color: white;
+    color: var(--text-secondary);
     cursor: pointer;
     font-family: inherit;
-    transition: background var(--transition), color var(--transition);
+    transition: all var(--transition);
 }
 
-.dash .btn-ghost:hover {
-    background: rgb(155, 31, 31);
-    border-color: rgb(155, 31, 31);
+.dash .btn-logout:hover {
+    background: #fef2f2;
+    border-color: #fca5a5;
+    color: #dc2626;
 }
 
 .dash .btn-primary {
@@ -97,14 +136,14 @@
     transform: scale(.97);
 }
 
-/* ── layout ── */
+/* ── Layout ── */
 .dash .main {
     max-width: 860px;
     margin: 0 auto;
     padding: 2.5rem 1.5rem;
 }
 
-/* ── header ── */
+/* ── Header ── */
 .dash .page-header {
     margin-bottom: 2rem;
 }
@@ -121,48 +160,7 @@
     margin-top: .25rem;
 }
 
-/* ── stats ── */
-.dash .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.dash .stat-card {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.25rem 1rem;
-    text-align: center;
-    transition: box-shadow var(--transition), transform var(--transition);
-}
-
-.dash .stat-card:hover {
-    box-shadow: 0 4px 16px rgba(59, 130, 246, .1);
-    transform: translateY(-2px);
-}
-
-.dash .stat-icon {
-    font-size: 1.5rem;
-}
-
-.dash .stat-value {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-top: .5rem;
-    color: var(--blue);
-}
-
-.dash .stat-label {
-    font-size: .78rem;
-    color: var(--muted);
-    margin-top: .2rem;
-    letter-spacing: .02em;
-    text-transform: uppercase;
-}
-
-/* ── chat card ── */
+/* ── Chat Card / CTA ── */
 .dash .chat-card {
     display: flex;
     align-items: center;
@@ -172,7 +170,7 @@
     border: 1px solid var(--blue-md);
     border-radius: var(--radius);
     padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .dash .chat-card h2 {
@@ -186,7 +184,11 @@
     margin-top: .25rem;
 }
 
-/* ── activity ── */
+/* ── Sections ── */
+.dash .section {
+    margin-bottom: 2rem;
+}
+
 .dash .section-title {
     font-size: .75rem;
     font-weight: 600;
@@ -196,50 +198,151 @@
     margin-bottom: .75rem;
 }
 
-.dash .activity-list {
-    background: #fff;
+.dash .empty-state {
+    padding: 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: .9rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+/* ── Document List ── */
+.dash .doc-list {
+    background: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     overflow: hidden;
 }
 
-.dash .activity-item {
+.dash .doc-item {
     display: flex;
     align-items: center;
+    gap: .75rem;
+    padding: .85rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background var(--transition);
+}
+
+.dash .doc-item:last-child {
+    border-bottom: none;
+}
+
+.dash .doc-item:hover {
+    background: var(--blue-lt);
+}
+
+.dash .doc-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.dash .doc-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.dash .doc-name {
+    font-size: .875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dash .doc-date {
+    font-size: .75rem;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+.dash .doc-arrow {
+    color: var(--blue);
+    font-size: 1rem;
+    font-weight: 600;
+    flex-shrink: 0;
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.dash .doc-item:hover .doc-arrow {
+    opacity: 1;
+}
+
+/* ── Chat History List ── */
+.dash .chat-list {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.dash .chat-item {
+    display: flex;
+    align-items: flex-start;
     gap: .75rem;
     padding: .85rem 1.25rem;
     border-bottom: 1px solid var(--border);
     transition: background var(--transition);
 }
 
-.dash .activity-item:last-child {
+.dash .chat-item:last-child {
     border-bottom: none;
 }
 
-.dash .activity-item:hover {
+.dash .chat-item:hover {
     background: var(--blue-lt);
 }
 
-.dash .activity-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
+.dash .chat-q-icon {
+    width: 28px;
+    height: 28px;
     background: var(--blue);
+    color: #fff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .7rem;
+    font-weight: 800;
     flex-shrink: 0;
+    margin-top: 2px;
 }
 
-.dash .activity-text {
+.dash .chat-item-body {
     flex: 1;
-    font-size: .875rem;
+    min-width: 0;
 }
 
-.dash .activity-time {
+.dash .chat-question {
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dash .chat-answer {
     font-size: .78rem;
     color: var(--muted);
-    flex-shrink: 0;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* ── responsive ── */
+.dash .chat-time {
+    font-size: .7rem;
+    color: var(--muted);
+    flex-shrink: 0;
+    white-space: nowrap;
+    margin-top: 4px;
+}
+
+/* ── Responsive ── */
 @media (max-width: 560px) {
     .dash .chat-card {
         flex-direction: column;

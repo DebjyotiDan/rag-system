@@ -1,0 +1,499 @@
+/* ═══════════════════════════════════════════════
+   Upload Page – Clean Minimal Light Theme
+   (matches Dashboard palette)
+   ═══════════════════════════════════════════════ */
+
+.upl-root {
+    --blue: #3b82f6;
+    --blue-lt: #eff6ff;
+    --blue-md: #bfdbfe;
+    --text: #1e293b;
+    --text-secondary: #475569;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --radius: 12px;
+    --transition: .18s ease;
+    min-height: 100vh;
+    width: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    position: relative;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+.upl-root *,
+.upl-root *::before,
+.upl-root *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Background Effects (subtle) ── */
+.upl-bg-grid {
+    display: none;
+}
+
+.upl-bg-glow-top {
+    position: fixed;
+    top: -15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 500px;
+    background: radial-gradient(ellipse at center,
+            rgba(59, 130, 246, 0.04) 0%, transparent 68%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.upl-bg-glow-bottom {
+    display: none;
+}
+
+/* ── Nav ── */
+.upl-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 2rem;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+}
+
+.upl-nav-back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.upl-nav-back:hover {
+    color: var(--blue);
+}
+
+.upl-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.upl-brand-mark {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+.upl-brand-accent {
+    color: var(--blue);
+}
+
+/* ── Main ── */
+.upl-main {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+}
+
+/* ── Header ── */
+.upl-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.upl-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: var(--blue-lt);
+    border: 1px solid var(--blue-md);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1.25rem;
+}
+
+.upl-badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--blue);
+    border-radius: 50%;
+    animation: uplPulse 2s infinite;
+}
+
+@keyframes uplPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.upl-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+}
+
+.upl-gradient-text {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.upl-subtitle {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* ── Upload Card ── */
+.upl-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.upl-card:hover {
+    border-color: var(--blue-md);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.08);
+}
+
+/* ── Dropzone ── */
+.upl-dropzone {
+    border: 2px dashed var(--blue-md);
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.25s, background 0.25s;
+    position: relative;
+}
+
+.upl-dropzone:hover,
+.upl-dropzone-active {
+    border-color: var(--blue);
+    background: var(--blue-lt);
+}
+
+.upl-file-input {
+    display: none;
+}
+
+.upl-drop-icon {
+    margin-bottom: 1rem;
+    color: var(--blue);
+    opacity: 0.7;
+}
+
+.upl-drop-title {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.upl-drop-link {
+    color: var(--blue);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.upl-drop-hint {
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+/* ── File Preview ── */
+.upl-file-preview {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--blue-lt);
+    border: 1px solid var(--blue-md);
+    border-radius: 12px;
+}
+
+.upl-file-icon {
+    font-size: 2rem;
+}
+
+.upl-file-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.upl-file-name {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.upl-file-size {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+.upl-file-remove {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid #fca5a5;
+    background: #fef2f2;
+    color: #dc2626;
+    cursor: pointer;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.upl-file-remove:hover {
+    background: #fee2e2;
+}
+
+/* ── Progress ── */
+.upl-progress-container {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.upl-progress-icon {
+    margin-bottom: 1rem;
+}
+
+.upl-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--blue-md);
+    border-top-color: var(--blue);
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: uplSpin 0.8s linear infinite;
+}
+
+@keyframes uplSpin {
+    to { transform: rotate(360deg); }
+}
+
+.upl-check {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 700;
+    animation: uplPop 0.3s ease;
+}
+
+@keyframes uplPop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.upl-progress-stage {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.upl-progress-bar {
+    height: 6px;
+    background: var(--blue-lt);
+    border-radius: 100px;
+    overflow: hidden;
+    max-width: 360px;
+    margin: 0 auto;
+    border: 1px solid var(--blue-md);
+}
+
+.upl-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+    border-radius: 100px;
+    transition: width 0.4s ease;
+}
+
+.upl-progress-pct {
+    font-size: 0.8rem;
+    color: var(--blue);
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+
+/* ── Error ── */
+.upl-error {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    border-radius: 10px;
+    color: #dc2626;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.upl-error-icon {
+    font-size: 1rem;
+}
+
+/* ── Submit Button ── */
+.upl-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 1.25rem;
+    padding: 0.85rem 1.5rem;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 0.15s, box-shadow 0.25s;
+}
+
+.upl-submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(59, 130, 246, 0.3);
+}
+
+.upl-submit:active {
+    transform: scale(0.98);
+}
+
+/* ── Pipeline Steps ── */
+.upl-pipeline {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    margin-top: 3rem;
+    padding: 0 1rem;
+}
+
+.upl-pipe-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    flex: 1;
+    max-width: 130px;
+}
+
+.upl-pipe-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--blue-lt);
+    border: 1px solid var(--blue-md);
+    border-radius: 12px;
+}
+
+.upl-pipe-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+}
+
+.upl-pipe-desc {
+    font-size: 0.7rem;
+    color: var(--muted);
+}
+
+.upl-pipe-arrow {
+    position: absolute;
+    right: -14px;
+    top: 16px;
+    color: var(--blue);
+    font-size: 1.1rem;
+    opacity: 0.5;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+    .upl-main {
+        padding: 2rem 1rem 3rem;
+    }
+
+    .upl-title {
+        font-size: 1.6rem;
+    }
+
+    .upl-pipeline {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .upl-pipe-arrow {
+        display: none;
+    }
+
+    .upl-pipe-step {
+        max-width: 100%;
+        flex-direction: row;
+        gap: 12px;
+        text-align: left;
+    }
+
+    .upl-nav {
+        padding: 0.75rem 1rem;
+    }
+}

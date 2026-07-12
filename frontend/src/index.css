@@ -1,27 +1,37 @@
+/* ═══════════════════════════════════════════════
+   Global / Auth Pages – Clean Light Theme
+   (matches Dashboard palette)
+   ═══════════════════════════════════════════════ */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
 body {
-  color: #333;
+  color: #1e293b;
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.auth-page-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  min-width: 100%;
-
-  /* ── CHANGED: dark navy + grid to match landing page ── */
-  background-color: #020d1f;
-  background-image:
-    linear-gradient(rgba(46, 124, 246, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(46, 124, 246, 0.045) 1px, transparent 1px);
-  background-size: 64px 64px;
+  width: 100%;
+  position: relative;
+  padding: 80px 20px 40px;
 }
 
-/* soft radial glow behind the form card, mimics landing's bg-radial */
+/* Subtle radial glow */
 body::before {
   content: '';
   position: fixed;
@@ -31,7 +41,7 @@ body::before {
   width: 900px;
   height: 600px;
   background: radial-gradient(ellipse at center,
-      rgba(26, 92, 200, 0.22) 0%, transparent 68%);
+      rgba(59, 130, 246, 0.04) 0%, transparent 68%);
   pointer-events: none;
   z-index: 0;
 }
@@ -44,7 +54,7 @@ body::after {
   width: 500px;
   height: 420px;
   background: radial-gradient(ellipse at center,
-      rgba(0, 212, 255, 0.07) 0%, transparent 70%);
+      rgba(59, 130, 246, 0.03) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -60,29 +70,39 @@ body::after {
 .form-card {
   background-color: #ffffff;
   padding: 40px 30px;
-  border-radius: 30px;
+  border-radius: 16px;
   text-align: center;
+  border: 1px solid #e2e8f0;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 .form-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 0 1px rgba(96, 165, 250, .55),
-    0 8px 32px rgba(46, 124, 246, .48);
-  color: #fff;
-  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.12);
 }
 
 .form-card h2 {
   font-size: 24px;
   margin-bottom: 8px;
-  color: #111827;
+  color: #1e293b;
+  font-weight: 700;
 }
 
 .subtitle {
   font-size: 14px;
-  color: #6b7280;
+  color: #64748b;
   margin-bottom: 24px;
+}
+
+.success-message {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #16a34a;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  margin-bottom: 16px;
+  font-weight: 500;
 }
 
 .google-btn {
@@ -92,18 +112,20 @@ body::after {
   align-items: center;
   background-color: #ffffff;
   color: #374151;
-  border: 1px solid #d1d5db;
+  border: 1px solid #e2e8f0;
   padding: 12px;
-  border-radius: 30px;
+  border-radius: 10px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.2s;
   margin-bottom: 20px;
+  font-family: inherit;
 }
 
 .google-btn:hover {
-  background-color: #f9fafb;
+  background-color: #f8fafc;
+  border-color: #bfdbfe;
 }
 
 .divider {
@@ -116,12 +138,12 @@ body::after {
 .divider::after {
   content: "";
   flex: 1;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .divider span {
   padding: 0 10px;
-  color: #9ca3af;
+  color: #94a3b8;
   font-size: 12px;
   font-weight: 600;
 }
@@ -135,19 +157,26 @@ body::after {
   display: block;
   font-size: 13px;
   font-weight: 600;
-  color: #374151;
+  color: #475569;
   margin-bottom: 6px;
 }
 
 .input-group input {
   width: 100%;
   padding: 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 30px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
   font-size: 14px;
   outline: none;
-  background-color: #dcdee0;
-  color: #242222;
+  background-color: #f8fafc;
+  color: #1e293b;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-group input:focus {
+  border-color: #bfdbfe;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08);
 }
 
 .options {
@@ -156,11 +185,13 @@ body::after {
   align-items: center;
   font-size: 13px;
   margin-bottom: 24px;
+  color: #475569;
 }
 
 .forgot-pass {
   color: #3b82f6;
   text-decoration: none;
+  font-weight: 500;
 }
 
 .forgot-pass:hover {
@@ -169,25 +200,31 @@ body::after {
 
 .submit-btn {
   width: 100%;
-  background-color: #2563eb;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
   color: #ffffff;
   border: none;
   padding: 14px;
-  border-radius: 30px;
+  border-radius: 10px;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
+  font-family: inherit;
+  transition: transform 0.15s, box-shadow 0.25s;
 }
 
 .submit-btn:hover {
-  background-color: #1139a5;
+  box-shadow: 0 6px 24px rgba(59, 130, 246, 0.3);
+  transform: translateY(-1px);
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
 }
 
 .footer-text {
   margin-top: 24px;
   font-size: 14px;
-  color: #4b5563;
+  color: #64748b;
 }
 
 .footer-text a {
@@ -200,37 +237,12 @@ body::after {
   text-decoration: underline;
 }
 
-.home-container {
-  text-align: center;
-}
-
-.home-container h1 {
-  font-size: 60px;
-  color: #111827;
-  margin-bottom: 20px;
-}
-
-.home-buttons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-
-.home-buttons button {
-  padding: 14px 30px;
-  border: none;
-  border-radius: 30px;
-  background: #2563eb;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-}
-
 .google-icon {
   font-size: 22px;
   margin-right: 10px;
 }
 
+/* ── Navbar (used on login/signup) ── */
 .navbar {
   width: 100%;
   height: 70px;
@@ -241,16 +253,15 @@ body::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
   z-index: 1000;
 }
 
 .logo {
   font-size: 24px;
   font-weight: bold;
-  color: #111827;
+  color: #1e293b;
 }
 
 .nav-links {
@@ -260,52 +271,11 @@ body::after {
 
 .nav-links a {
   text-decoration: none;
-  color: #374151;
+  color: #475569;
   font-weight: 600;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
 .nav-links a:hover {
-  color: #2563eb;
-}
-
-
-.logout {
-  display: flex;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.out:hover {
-  background: #008bcc;
-}
-
-.out {
-  cursor: pointer;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  background: #182e8f;
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.chat {
-  display: flex;
-  position: absolute;
-  top: 20px;
-  right: 144px;
-}
-
-.rag-container {
-  display: flex;
-  position: absolute;
-  width: 49vw;
-  top: 15px;
-  left: 20px;
-  font-size: 32px;
-  font-weight: bold;
-  color: #182e8f;
+  color: #3b82f6;
 }

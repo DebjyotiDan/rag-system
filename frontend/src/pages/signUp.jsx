@@ -57,7 +57,7 @@ function Signup() {
     };
 
     return (
-        <div>
+        <div className="auth-page-wrapper">
 
             <Navbar />
 

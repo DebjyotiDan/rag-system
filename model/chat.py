@@ -15,7 +15,6 @@ def create_document_id(pdf_path):
     """Create a unique document ID from the file path + timestamp."""
     basename = os.path.basename(pdf_path)
     name, _ = os.path.splitext(basename)
-    # Use a short hash of path + time to ensure uniqueness
     unique_hash = hashlib.md5(
         f"{pdf_path}_{time.time()}".encode()
     ).hexdigest()[:8]

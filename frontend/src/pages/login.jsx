@@ -48,6 +48,11 @@ function Login() {
                 res.data.token
             );
 
+            localStorage.setItem(
+                "user",
+                JSON.stringify(res.data.user)
+            );
+
             navigate("/dashboard");
 
         } catch (error) {
@@ -62,12 +67,11 @@ function Login() {
     };
 
     return (
-        <div>
+        <div className="auth-page-wrapper">
 
             <Navbar />
 
             <div className="container">
-
                 <div className="form-card">
 
                     {

@@ -3,15 +3,18 @@ import tempfile, os
 from services.pdfloader import extract_text
 from services.chunker import chunk_text
 from services.embedding import generate_embeddings
-from services.vectordb import store_embeddings
+from services.vectordb import store_embeddings, store_user_document
 
 router = APIRouter()
 
 
 @router.post("/ingest")
-async def ingest(file: UploadFile = File(...), document_id: str = Form(...)):
+async def ingest(
+    file: UploadFile = File(...),
+    document_id: str = Form(...),
+    user_id: str = Form(...)
+):
     contents = await file.read()
-    # print(contents)
 
     # saving  temp file
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
@@ -41,8 +44,15 @@ async def ingest(file: UploadFile = File(...), document_id: str = Form(...)):
             embeddings
         )
 
+        # Register document for user
+        store_user_document(
+            user_id=user_id,
+            document_id=document_id,
+            file_name=file.filename
+        )
+
     except Exception as e:
-        raise HTTPException(status_code=500, detail=e)
+        raise HTTPException(status_code=500, detail=str(e))
     finally:
         # removing the file
         os.remove(pdf_path)
